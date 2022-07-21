@@ -4,8 +4,6 @@ import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyVall
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.domain.Fruita;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.repository.FruitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,25 +21,16 @@ public class FruitaService {
     }
 
     public Fruita update(int id, Fruita fruita) throws FruitaNotFoundException {
-        Optional<Fruita> fruitaData = fruitaRepository.findById(id);
-        if (fruitaData.isPresent()) {
-            Fruita _fruita = fruitaData.get();
-            _fruita.setNom(fruita.getNom());
-            _fruita.setQuantitatQuilos(fruita.getQuantitatQuilos());
-            return fruitaRepository.save(_fruita);
-        } else {
-            throw new FruitaNotFoundException("Fruita not found");
-        }
+        Fruita _fruita = getOne(id);
+        _fruita.setNom(fruita.getNom());
+        _fruita.setQuantitatQuilos(fruita.getQuantitatQuilos());
+        return fruitaRepository.save(_fruita);
     }
 
     public boolean delete(int id) throws FruitaNotFoundException {
-        Optional<Fruita> fruitaData = fruitaRepository.findById(id);
-        if (fruitaData.isPresent()) {
-            fruitaRepository.deleteById(id);
-            return true;
-        } else {
-            throw new FruitaNotFoundException("Fruita not found");
-        }
+        getOne(id);
+        fruitaRepository.deleteById(id);
+        return true;
     }
 
     public List<Fruita> getAll() {
@@ -49,11 +38,7 @@ public class FruitaService {
     }
 
     public Fruita getOne(int id) throws FruitaNotFoundException {
-        Optional<Fruita> fruitaData = fruitaRepository.findById(id);
-        if (fruitaData.isPresent()) {
-            return fruitaData.get();
-        } else {
-            throw new FruitaNotFoundException("Fruita not found");
-        }
+        return fruitaRepository.findById(id).orElseThrow(() -> new FruitaNotFoundException("blah"));
     }
 }
+//TODO: Canviar exception

@@ -10,3 +10,5 @@ public class S04T02N01CompanyValletErnestApplication {
 		SpringApplication.run(S04T02N01CompanyValletErnestApplication.class, args);
 	}
 }
+
+//TODO: swagger

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,12 +19,12 @@ public class FruitaController {
     FruitaService fruitaService;
 
     @PostMapping("/add")
-    public ResponseEntity<Fruita> createFruita(@RequestBody Fruita fruita) {
+    public ResponseEntity<Fruita> createFruita(@Valid @RequestBody Fruita fruita) {
         return new ResponseEntity<>(fruitaService.add(fruita), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Fruita> updateFruita(@PathVariable("id") int id, @RequestBody Fruita fruita) throws FruitaNotFoundException {
+    public ResponseEntity<Fruita> updateFruita(@PathVariable("id") int id,@Valid @RequestBody Fruita fruita) throws FruitaNotFoundException {
         return new ResponseEntity<>(fruitaService.update(id, fruita), HttpStatus.OK);
     }
 
@@ -38,15 +39,15 @@ public class FruitaController {
 
     @GetMapping("/getOne/{id}")
     public ResponseEntity<Fruita> getFruitaById(@PathVariable("id") int id) throws FruitaNotFoundException {
-        List<Fruita> fruites = fruitaService.getAll();
-        if (fruites.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         return new ResponseEntity<>(fruitaService.getOne(id), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Fruita>> getAllFruits() {
-        return new ResponseEntity<>(fruitaService.getAll(), HttpStatus.OK);
+        List<Fruita> fruites = fruitaService.getAll();
+        if (fruites.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(fruites, HttpStatus.OK);
     }
 }

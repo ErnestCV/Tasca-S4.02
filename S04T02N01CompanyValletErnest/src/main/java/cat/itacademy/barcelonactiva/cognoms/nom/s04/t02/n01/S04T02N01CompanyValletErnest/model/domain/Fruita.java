@@ -1,6 +1,8 @@
 package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "fruites")
@@ -9,6 +11,8 @@ public class Fruita {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "nom")
+    @NotBlank(message = "No ha de ser blank")
+    @NotNull(message = "Nom is mandatory")
     private String nom;
     @Column(name = "quantitatquilos")
     private int quantitatQuilos;
