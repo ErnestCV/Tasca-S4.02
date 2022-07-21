@@ -1,6 +1,6 @@
 package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.services;
 
-import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.exceptions.FruitaNotFoundException;
+import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.exceptions.ElementNotFoundException;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.domain.Fruita;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.repository.FruitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FruitaService {
@@ -20,14 +19,14 @@ public class FruitaService {
         return fruitaRepository.save(new Fruita(fruita.getNom(), fruita.getQuantitatQuilos()));
     }
 
-    public Fruita update(int id, Fruita fruita) throws FruitaNotFoundException {
+    public Fruita update(int id, Fruita fruita) throws ElementNotFoundException {
         Fruita _fruita = getOne(id);
         _fruita.setNom(fruita.getNom());
         _fruita.setQuantitatQuilos(fruita.getQuantitatQuilos());
         return fruitaRepository.save(_fruita);
     }
 
-    public void delete(int id) throws FruitaNotFoundException {
+    public void delete(int id) throws ElementNotFoundException {
         getOne(id);
         fruitaRepository.deleteById(id);
     }
@@ -36,8 +35,7 @@ public class FruitaService {
         return new ArrayList<>(fruitaRepository.findAll());
     }
 
-    public Fruita getOne(int id) throws FruitaNotFoundException {
-        return fruitaRepository.findById(id).orElseThrow(() -> new FruitaNotFoundException("blah"));
+    public Fruita getOne(int id) throws ElementNotFoundException {
+        return fruitaRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("blah"));
     }
 }
-//TODO: Canviar exception

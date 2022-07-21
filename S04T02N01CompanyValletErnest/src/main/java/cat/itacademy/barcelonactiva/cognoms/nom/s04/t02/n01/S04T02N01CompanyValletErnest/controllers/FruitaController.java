@@ -1,6 +1,6 @@
 package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.controllers;
 
-import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.exceptions.FruitaNotFoundException;
+import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.exceptions.ElementNotFoundException;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.domain.Fruita;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.services.FruitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +24,18 @@ public class FruitaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Fruita> updateFruita(@PathVariable("id") int id,@Valid @RequestBody Fruita fruita) throws FruitaNotFoundException {
+    public ResponseEntity<Fruita> updateFruita(@PathVariable("id") int id,@Valid @RequestBody Fruita fruita) throws ElementNotFoundException {
         return new ResponseEntity<>(fruitaService.update(id, fruita), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteFruit(@PathVariable("id") int id) throws FruitaNotFoundException {
+    public ResponseEntity<HttpStatus> deleteFruit(@PathVariable("id") int id) throws ElementNotFoundException {
         fruitaService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/getOne/{id}")
-    public ResponseEntity<Fruita> getFruitaById(@PathVariable("id") int id) throws FruitaNotFoundException {
+    public ResponseEntity<Fruita> getFruitaById(@PathVariable("id") int id) throws ElementNotFoundException {
         return new ResponseEntity<>(fruitaService.getOne(id), HttpStatus.OK);
     }
 
