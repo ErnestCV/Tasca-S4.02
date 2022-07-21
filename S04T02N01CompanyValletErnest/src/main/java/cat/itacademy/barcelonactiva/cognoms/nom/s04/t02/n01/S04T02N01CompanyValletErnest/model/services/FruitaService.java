@@ -27,10 +27,9 @@ public class FruitaService {
         return fruitaRepository.save(_fruita);
     }
 
-    public boolean delete(int id) throws FruitaNotFoundException {
+    public void delete(int id) throws FruitaNotFoundException {
         getOne(id);
         fruitaRepository.deleteById(id);
-        return true;
     }
 
     public List<Fruita> getAll() {

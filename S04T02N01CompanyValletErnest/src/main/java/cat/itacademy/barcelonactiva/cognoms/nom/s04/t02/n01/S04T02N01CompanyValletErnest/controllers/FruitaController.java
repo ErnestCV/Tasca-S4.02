@@ -30,10 +30,7 @@ public class FruitaController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteFruit(@PathVariable("id") int id) throws FruitaNotFoundException {
-        boolean deleted = fruitaService.delete(id);
-        if (!deleted) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        fruitaService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
