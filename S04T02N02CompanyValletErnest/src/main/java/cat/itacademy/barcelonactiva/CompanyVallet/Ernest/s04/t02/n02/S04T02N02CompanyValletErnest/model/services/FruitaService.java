@@ -6,7 +6,6 @@ import cat.itacademy.barcelonactiva.CompanyVallet.Ernest.s04.t02.n02.S04T02N02Co
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,7 +30,7 @@ public class FruitaService {
         fruitaRepository.deleteById(id);
     }
 
-    public Iterable<Fruita> getAll() {
+    public List<Fruita> getAll() {
         return fruitaRepository.findAll();
     }
 
@@ -39,3 +38,5 @@ public class FruitaService {
         return fruitaRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("No s'ha trobat l'element"));
     }
 }
+
+//TODO: convertir a DTO??

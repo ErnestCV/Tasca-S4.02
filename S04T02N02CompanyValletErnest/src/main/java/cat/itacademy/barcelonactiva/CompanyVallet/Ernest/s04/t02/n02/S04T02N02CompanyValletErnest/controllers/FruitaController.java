@@ -40,9 +40,9 @@ public class FruitaController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<Iterable<Fruita>> getAllFruits() {
-        Iterable<Fruita> fruites = fruitaService.getAll();
-        if (!fruites.iterator().hasNext()) {
+    public ResponseEntity<List<Fruita>> getAllFruits() {
+        List<Fruita> fruites = fruitaService.getAll();
+        if (fruites.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(fruites, HttpStatus.OK);
