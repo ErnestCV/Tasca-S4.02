@@ -12,3 +12,5 @@ https://www.baeldung.com/building-a-restful-web-service-with-spring-and-java-bas
 https://spring.io/guides/gs/accessing-data-mysql/
 
 https://stackoverflow.com/questions/36174516/rest-api-dtos-or-not
+
+https://www.baeldung.com/spring-rest-openapi-documentation
