@@ -35,7 +35,7 @@ public class FruitaService {
         return new ArrayList<>(fruitaRepository.findAll());
     }
 
-    public Fruita getOne(int id) throws ElementNotFoundException {
-        return fruitaRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("blah"));
+    public Fruita getOne(int id) throws ElementNotFoundException{
+        return fruitaRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("No s'ha trobat l'element"));
     }
 }

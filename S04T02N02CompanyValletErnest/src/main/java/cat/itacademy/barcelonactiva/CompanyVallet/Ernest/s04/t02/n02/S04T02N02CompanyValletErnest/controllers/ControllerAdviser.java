@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class Handler {
+public class ControllerAdviser {
 
     @ExceptionHandler({ElementNotFoundException.class})
     public ResponseEntity<Object> handleElementNotFound(ElementNotFoundException ex) {
