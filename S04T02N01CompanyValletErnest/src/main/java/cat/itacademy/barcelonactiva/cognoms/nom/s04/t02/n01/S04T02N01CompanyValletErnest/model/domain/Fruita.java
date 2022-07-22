@@ -1,6 +1,7 @@
 package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.S04T02N01CompanyValletErnest.model.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -15,6 +16,7 @@ public class Fruita {
     @NotNull(message = "Nom is mandatory")
     private String nom;
     @Column(name = "quantitatquilos")
+    @Min(1)
     private int quantitatQuilos;
 
     public Fruita() {

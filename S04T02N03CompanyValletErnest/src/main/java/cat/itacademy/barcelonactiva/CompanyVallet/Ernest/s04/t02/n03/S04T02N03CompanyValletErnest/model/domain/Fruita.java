@@ -3,7 +3,10 @@ package cat.itacademy.barcelonactiva.CompanyVallet.Ernest.s04.t02.n03.S04T02N03C
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Document(collection = "fruites")
@@ -11,8 +14,11 @@ public class Fruita {
     @Id
     private String id;
 
+    @NotBlank(message = "No ha de ser buit")
+    @NotNull(message = "Nom is mandatory")
     private String nom;
 
+    @Min(1)
     private int quantitatQuilos;
 
     public Fruita() {
@@ -22,15 +28,6 @@ public class Fruita {
         this.nom = nom;
         this.quantitatQuilos = quantitatQuilos;
     }
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
 
     public String getId() {
         return id;

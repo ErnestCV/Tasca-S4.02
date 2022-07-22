@@ -2,6 +2,7 @@ package cat.itacademy.barcelonactiva.CompanyVallet.Ernest.s04.t02.n02.S04T02N02C
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +17,7 @@ public class Fruita {
     @NotNull(message = "Nom is mandatory")
     private String nom;
     @Column(name = "quantitatquilos")
+    @Min(1)
     private int quantitatQuilos;
 
     public Fruita() {

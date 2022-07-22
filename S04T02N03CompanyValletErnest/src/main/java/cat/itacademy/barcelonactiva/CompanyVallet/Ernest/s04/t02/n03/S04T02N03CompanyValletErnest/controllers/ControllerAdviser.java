@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,18 +17,20 @@ public class ControllerAdviser {
 
     @ExceptionHandler({ElementNotFoundException.class})
     public ResponseEntity<Object> handleElementNotFound(ElementNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        Map<String, Object> errors = new HashMap<>();
+
+        errors.put("timestamp", LocalDateTime.now());
+        errors.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
-//    @ExceptionHandler({MethodArgumentNotValidException.class})
-//    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
-//        List<String> errors = ex.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage).toList();
-//
-//        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-//    }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
+        Map<String, Object> errors = new HashMap<>();
+
+        errors.put("timestamp", LocalDateTime.now());
+        errors.put("message", "Error en introduir les dades");
 
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -36,5 +39,4 @@ public class ControllerAdviser {
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
-    //TODO: posar timestamp, etc.
 }
