@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class FruitaDTO implements Serializable {
 
-    //TODO: fer servir
+    //No s'està fent servir de moment
+
     private int id;
     private String nom;
     private int quantitatQuilos;

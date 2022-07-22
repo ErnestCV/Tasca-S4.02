@@ -38,5 +38,3 @@ public class FruitaService {
         return fruitaRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("No s'ha trobat l'element"));
     }
 }
-
-//TODO: convertir a DTO??

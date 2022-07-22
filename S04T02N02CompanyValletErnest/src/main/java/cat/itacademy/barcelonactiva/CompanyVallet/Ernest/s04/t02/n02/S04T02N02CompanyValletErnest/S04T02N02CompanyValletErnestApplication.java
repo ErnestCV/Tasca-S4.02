@@ -10,5 +10,3 @@ public class S04T02N02CompanyValletErnestApplication {
 		SpringApplication.run(S04T02N02CompanyValletErnestApplication.class, args);
 	}
 }
-
-//TODO readme http://localhost:8080/swagger-ui.html
